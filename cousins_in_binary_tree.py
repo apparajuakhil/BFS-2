@@ -71,13 +71,13 @@ class Solution:
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution: 
-    def isCousins(self, root: Optional[TreeNode], x: int, y: int) -> bool: #O(n) O(h)
+class Solution:
+    def isCousins(self, root: Optional[TreeNode], x: int, y: int) -> bool:
         if not root:
             return False
 
         self.x_depth = -1
-        self.y_depth = -2
+        self.y_depth = -1
         self.x_parent = None
         self.y_parent = None
         self.x = x
@@ -91,7 +91,7 @@ class Solution:
         return False
 
     def dfs(self, root, level, parent):
-        if root is None:
+        if root is None or (self.x_depth != -1 and self.y_depth != -1): # assuming we already found x or y
             return
 
         if root.val == self.x:
